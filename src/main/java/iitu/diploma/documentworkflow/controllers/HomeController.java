@@ -28,9 +28,8 @@ public class HomeController {
 
     @PostMapping(value = "/adddoc")
     public String addDoc(@RequestParam(name = "doc_name") String name,
-                        @RequestParam(name = "doc_num", defaultValue = "0") int num){
-        DBManager.addDoc(new Document(null, name, num));
-        System.out.println("ДОБАВИЛОСЬ");
+                        @RequestParam(name = "stud_id", defaultValue = "0") int studId){
+        DBManager.addDoc(new Document(null, name, 0, studId, 0, "Создано"));
         return "redirect:/";
     }
 
