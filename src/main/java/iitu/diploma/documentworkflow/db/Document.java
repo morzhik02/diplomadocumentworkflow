@@ -7,9 +7,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class DocTypes {
+public class Document {
 
     private Long id;
-    private String name;
+    private String docType;
+    private int num;
 
 }

@@ -1,0 +1,33 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Документ</title>
+</head>
+<body>
+    <div>
+        <div>
+            <div>
+                <form th:action="@{'/savedoc'}" method="post">
+                    <div>
+                        <label>
+                            Название:
+                        </label>
+                        <!--/*@thymesVar id="document" type="iitu.diploma.documentworkflow.db.Document"*/-->
+                        <input th:type="text" name="doc_name" th:value="${document!=null ? document.docType : ''}">
+                    </div>
+                    <div>
+                        <label>
+                            Номер:
+                        </label>
+                        <!--/*@thymesVar id="document" type="iitu.diploma.documentworkflow.db.Document"*/-->
+                        <input th:type="text" name="doc_num" th:value="${document!=null ? document.num: 0}">
+                    </div>
+                    <div>
+                        <button>Сохранить</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

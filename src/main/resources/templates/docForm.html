@@ -4,42 +4,48 @@
     <title>Запросить документ</title>
 </head>
 <body>
-<div>
     <div>
         <div>
-            <form th:action="@{'/addDoc'}" method="post">
-                <div>
-                    <label>
-                        Name:
-                    </label>
-                    <input th:type="text" name="doc_type">
-                </div>
-                <div>
-                    <button>Отправить</button>
-                </div>
-            </form>
-        </div>
-        <!--<div>
             <div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>id</th>
-                            <th>name</th>
-                        </tr>
-                    </thead>
-                    <tbody>!-->
-                    <!--/*@thymesVar id="docs" type="java.util.ArrayList<iitu.diploma.documentworkflow.db.DocTypes"*/-->
-                    <!--<tr th:each="doc : ${docs}">
-                        <td th:text="${doc.id}"></td>
-                        <td th:text="${doc.name}"></td>
-                        <td><a th:href="">details</a></td>
-                    </tr>
-                    </tbody>
-                </table>
+                <form th:action="@{'/adddoc'}" method="post">
+                    <div>
+                        <label>
+                            Название:
+                        </label>
+                        <input th:type="text" name="doc_name">
+                    </div>
+                    <div>
+                        <label>
+                            Номер:
+                        </label>
+                        <input th:type="text" name="doc_num">
+                    </div>
+                    <div>
+                        <button>Отправить</button>
+                    </div>
+                </form>
             </div>
-        </div>-->
+        </div>
+        <div>
+            <table>
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Номер документа</th>
+                    <th>Тип заявления</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!--/*@thymesVar id="docs" type="java.util.ArrayList<iitu.diploma.documentworkflow.db.Document>"*/-->
+                <tr th:each="doc : ${docs}">
+                    <td th:text="${doc.id}"></td>
+                    <td th:text="${doc.num}"></td>
+                    <td th:text="${doc.docType}"></td>
+                    <td><a th:href="@{'/details/' + ${doc.id}}">details</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
 </body>
 </html>
