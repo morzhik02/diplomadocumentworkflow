@@ -1,0 +1,45 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Запросить документ</title>
+</head>
+<body>
+<div>
+    <div>
+        <div>
+            <form th:action="@{'/addDoc'}" method="post">
+                <div>
+                    <label>
+                        Name:
+                    </label>
+                    <input th:type="text" name="doc_type">
+                </div>
+                <div>
+                    <button>Отправить</button>
+                </div>
+            </form>
+        </div>
+        <!--<div>
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>name</th>
+                        </tr>
+                    </thead>
+                    <tbody>!-->
+                    <!--/*@thymesVar id="docs" type="java.util.ArrayList<iitu.diploma.documentworkflow.db.DocTypes"*/-->
+                    <!--<tr th:each="doc : ${docs}">
+                        <td th:text="${doc.id}"></td>
+                        <td th:text="${doc.name}"></td>
+                        <td><a th:href="">details</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>-->
+    </div>
+</div>
+</body>
+</html>
