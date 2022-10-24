@@ -1,10 +1,11 @@
 package iitu.diploma.documentworkflow.controllers;
 
 import iitu.diploma.documentworkflow.db.DBManager;
-import iitu.diploma.documentworkflow.db.DocTypes;
+import iitu.diploma.documentworkflow.db.Document;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -13,10 +14,10 @@ import java.util.ArrayList;
 @Controller
 public class HomeController {
 
-    @GetMapping(value = "/docform")
+    @GetMapping(value = "/")
     public String home(Model model){
-        ArrayList<DocTypes> docTypes = DBManager.getDocTypes();
-        model.addAttribute("docs", docTypes);
+        ArrayList<Document> documents = DBManager.getDocuments();
+        model.addAttribute("docs", documents);
         return "docForm";
     }
 
@@ -25,11 +26,20 @@ public class HomeController {
         return "about";
     }
 
-    @PostMapping(value = "/addDoc")
-    public String addDoc(@RequestParam(name = "doc_type", defaultValue = "No") String name){
-        DBManager.addDoc(new DocTypes(1L, name));
+    @PostMapping(value = "/adddoc")
+    public String addDoc(@RequestParam(name = "doc_name") String name,
+                        @RequestParam(name = "doc_num", defaultValue = "0") int num){
+        DBManager.addDoc(new Document(null, name, num));
         System.out.println("ДОБАВИЛОСЬ");
-        return "redirect:/about";
+        return "redirect:/";
     }
+
+    @GetMapping(value = "/details/{id}")
+    public String details(Model model, @PathVariable(name = "id") Long id){
+        Document document = DBManager.getDocument(id);
+        model.addAttribute("document", document);
+        return "details";
+    }
+
 
 }
