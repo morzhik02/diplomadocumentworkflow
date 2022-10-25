@@ -1,7 +1,10 @@
 package iitu.diploma.documentworkflow.controllers;
 
+import iitu.diploma.documentworkflow.beans.TestBean;
 import iitu.diploma.documentworkflow.db.DBManager;
 import iitu.diploma.documentworkflow.db.Document;
+import iitu.diploma.documentworkflow.services.StudentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,10 +17,16 @@ import java.util.ArrayList;
 @Controller
 public class HomeController {
 
+    @Autowired
+    private StudentService studentService;
+
     @GetMapping(value = "/")
     public String home(Model model){
         ArrayList<Document> documents = DBManager.getDocuments();
+        studentService.setData("Marzhan");
+        String text = studentService.getData();
         model.addAttribute("docs", documents);
+        model.addAttribute("text", text);
         return "docForm";
     }
 
