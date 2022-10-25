@@ -19,7 +19,7 @@
                     <label class="form-label">
                         Тип:
                     </label>
-                    <select class="form-select" th:type="text" name="doc_name">
+                    <select class="form-select" th:type="text" name="docName">
                         <option>Заявление</option>
                         <option>Справка</option>
                         <option>Подать документы</option>
@@ -29,18 +29,16 @@
                     <label class="form-label">
                         ID студента:
                     </label>
-                    <input th:type="text" class="form-control" name="stud_id">
+                    <input th:type="text" class="form-control" name="studId">
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-success">Отправить</button>
+                    <button class="btn btn-success mt-5">Отправить</button>
                 </div>
             </form>
         </div>
     </div>
     <div class="row mt-5">
         <div class="col-12">
-            <!--/*@thymesVar id="text" type="<iitu.diploma.documentworkflow.beans.TestBean"*/-->
-            <h1 th:text="${text}"></h1>
             <table class="table table-striped">
                 <thead>
                 <tr>
@@ -54,13 +52,13 @@
                 </tr>
                 </thead>
                 <tbody>
-                <!--/*@thymesVar id="docs" type="java.util.ArrayList<iitu.diploma.documentworkflow.db.Document>"*/-->
+                <!--/*@thymesVar id="docs" type="java.util.ArrayList<iitu.diploma.documentworkflow.entities.Documents>"*/-->
                 <tr th:each="doc : ${docs}">
                     <td th:text="${doc.id}"></td>
                     <td th:text="${doc.docType}"></td>
                     <td th:text="${doc.num}"></td>
-                    <td th:text="${doc.stud_id}"></td>
-                    <td th:text="${doc.owner_id}"></td>
+                    <td th:text="${doc.studId}"></td>
+                    <td th:text="${doc.ownerId}"></td>
                     <td th:text="${doc.status}"></td>
                     <td><a th:href="@{'/details/' + ${doc.id}}" class="btn btn-info btn-sm">Подробнее</a></td>
                 </tr>

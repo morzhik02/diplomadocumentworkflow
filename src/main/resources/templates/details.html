@@ -12,24 +12,61 @@
         <div class="row mt-5">
             <div class="col-6 offset-3">
                 <form th:action="@{'/savedoc'}" method="post">
+                    <!--/*@thymesVar id="document" type="iitu.diploma.documentworkflow.entities.Documents"*/-->
+                    <input type="hidden" name="docId" th:value="${document.id}">
                     <div class="form-group">
                         <label class="form-label">
                             Тип:
                         </label>
-                        <!--/*@thymesVar id="document" type="iitu.diploma.documentworkflow.db.Document"*/-->
-                        <input th:type="text" class="form-control" name="doc_name" th:value="${document!=null ? document.docType : ''}" readonly>
+                        <input th:type="text" class="form-control" name="docName" th:value="${document!=null ? document.docType : ''}" readonly>
                     </div>
                     <div class="form-group">
                         <label class="form-label">
                             ID Студента:
                         </label>
-                        <!--/*@thymesVar id="document" type="iitu.diploma.documentworkflow.db.Document"*/-->
-                        <input th:type="text" class="form-control" name="stud_id" th:value="${document!=null ? document.stud_id: 0}" readonly>
+                        <input th:type="text" class="form-control" name="studId" th:value="${document!=null ? document.studId: 0}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">
+                            Статус:
+                        </label>
+                        <select class="form-select" name="status" th:value="${document.status}">
+                            <option>В работе</option>
+                            <option>Закрыто</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <button class="btn btn-primary">Сохранить</button>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-danger ml-2" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                            Удалить
+                        </button>
                     </div>
                 </form>
+
+
+                <!-- Modal -->
+                <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <form class="form-group" th:action="${'/deletedoc'}" method="post">
+                            <!--/*@thymesVar id="document" type="iitu.diploma.documentworkflow.entities.Documents"*/-->
+                            <input type="hidden" name="docId" th:value="${document.id}">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="deleteModalLabel"></h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <h5>Вы уверены?</h5>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+                                    <button class="btn btn-danger">Да, удалить</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
