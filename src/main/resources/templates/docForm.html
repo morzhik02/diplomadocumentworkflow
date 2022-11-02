@@ -29,7 +29,7 @@
                     <label class="form-label">
                         ID студента:
                     </label>
-                    <input th:type="text" class="form-control" name="studId">
+                    <input th:type="text" class="form-control" name="studLogin">
                 </div>
                 <div class="form-group">
                     <button class="btn btn-success mt-5">Отправить</button>
@@ -57,7 +57,7 @@
                     <td th:text="${doc.id}"></td>
                     <td th:text="${doc.docType}"></td>
                     <td th:text="${doc.num}"></td>
-                    <td th:text="${doc.studId}"></td>
+                    <td th:text="${doc.studLogin}"></td>
                     <td th:text="${doc.ownerId}"></td>
                     <td th:text="${doc.status}"></td>
                     <td><a th:href="@{'/details/' + ${doc.id}}" class="btn btn-info btn-sm">Подробнее</a></td>

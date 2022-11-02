@@ -4,8 +4,10 @@ import iitu.diploma.documentworkflow.beans.TestBean;
 import iitu.diploma.documentworkflow.db.DBManager;
 import iitu.diploma.documentworkflow.db.Document;
 import iitu.diploma.documentworkflow.entities.Documents;
+import iitu.diploma.documentworkflow.entities.Students;
 import iitu.diploma.documentworkflow.services.StudentService;
 import iitu.diploma.documentworkflow.services.impl.DocumentServiceImpl;
+import iitu.diploma.documentworkflow.services.impl.StudentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +29,10 @@ public class HomeController {
     public String home(Model model){
         List<Documents> documents = documentService.getAllDocs();
         model.addAttribute("docs", documents);
+
+        /*List<Students> students = documentService.getAllStudents();
+        model.addAttribute("students", students);*/
+
         return "docForm";
     }
 
@@ -37,9 +43,12 @@ public class HomeController {
 
     @PostMapping(value = "/adddoc")
     public String addDoc(@RequestParam(name = "docName") String docName,
-                         @RequestParam(name = "studId", defaultValue = "0") int studId){
-        System.out.println("DOCNAME: " + docName + ", STUDENT:" + studId);
-        documentService.addDoc(new Documents(null, docName, 12, studId, 0, "Создано"));
+                         @RequestParam(name = "studLogin") int studLogin){
+        System.out.println("DOCNAME: " + docName + ", STUDENT:" + studLogin);
+        //Students students = documentService.getStudent(studId);
+        //if(students != null){
+            documentService.addDoc(new Documents(null, docName, null, studLogin, 0L, "Создано"));
+        //}
         return "redirect:/";
     }
 

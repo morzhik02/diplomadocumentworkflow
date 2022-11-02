@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "d_items")
+@Table(name = "docs")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,14 +21,19 @@ public class Documents {
     @Column(name = "doc_type", length = 100)
     private String docType;
 
+    @SequenceGenerator(name = "docsNumSeq", sequenceName = "docs_num_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "docsNumSeq")
     @Column(name = "num")
-    private int num;
+    private Long num;
 
-    @Column(name = "stud_id")
-    private int studId;
+    //@ManyToOne(fetch = FetchType.EAGER)
+    //@Column(name = "stud_login")
+    //private Students student;
+    @Column(name = "stud_login")
+    private int studLogin;
 
     @Column(name = "owner_id")
-    private int ownerId;
+    private Long ownerId;
 
     @Column(name = "stat", length = 50)
     private String status;
