@@ -1,13 +1,7 @@
 package iitu.diploma.documentworkflow.controllers;
 
-import iitu.diploma.documentworkflow.beans.TestBean;
-import iitu.diploma.documentworkflow.db.DBManager;
-import iitu.diploma.documentworkflow.db.Document;
 import iitu.diploma.documentworkflow.entities.Documents;
-import iitu.diploma.documentworkflow.entities.Students;
-import iitu.diploma.documentworkflow.services.StudentService;
 import iitu.diploma.documentworkflow.services.impl.DocumentServiceImpl;
-import iitu.diploma.documentworkflow.services.impl.StudentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller

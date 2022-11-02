@@ -7,26 +7,18 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "students")
+@Table(name = "employees")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Students {
-
+public class Employees {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Long id;
 
-    //@OneToMany(mappedBy = "stud_id", cascade = CascadeType.ALL)
     @Column(name = "login")
-    //private Set<Documents> documents = new HashSet<Documents>();
     private String login;
-
-    /*public void addDoc(Documents document){
-        documents.add(document);
-        document.setStud_id(this);
-    }*/
 
     @Column(name = "last_name", length = 100)
     private String lastName;
@@ -34,6 +26,9 @@ public class Students {
     @Column(name = "first_name", length = 100)
     private String firstName;
 
-    @Column(name = "group_id")
-    private Long groupId;
+    @Column(name = "position", length = 100)
+    private String position;
+
+    @Column(name = "team_id")
+    private Long teamId;
 }

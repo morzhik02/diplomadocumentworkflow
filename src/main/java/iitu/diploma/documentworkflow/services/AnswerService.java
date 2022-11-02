@@ -1,4 +1,4 @@
 package iitu.diploma.documentworkflow.services;
 
-public interface StudentService {
+public interface AnswerService {
 }
