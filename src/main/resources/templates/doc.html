@@ -63,32 +63,28 @@
 </div>
 <div class="container">
     <div class="row mt-5">
-        <div class="col-12">
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Тип</th>
-                    <th>Номер обращения</th>
-                    <th>ID студента</th>
-                    <th>Ответсвенный</th>
-                    <th>Статус</th>
-                    <th>Детали</th>
-                </tr>
-                </thead>
-                <tbody>
-                <!--/*@thymesVar id="docs" type="java.util.ArrayList<iitu.diploma.documentworkflow.entities.Documents>"*/-->
-                <tr th:each="doc : ${docs}">
-                    <td th:text="${doc.id}"></td>
-                    <td th:text="${doc.docType}"></td>
-                    <td th:text="${doc.num}"></td>
-                    <td th:text="${doc.studLogin}"></td>
-                    <td th:text="${doc.ownerId}"></td>
-                    <td th:text="${doc.status}"></td>
-                    <td><a th:href="@{'/details/' + ${doc.id}}" class="btn btn-info btn-sm" sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_EMPLOYEE')">Подробнее</a></td>
-                </tr>
-                </tbody>
-            </table>
+        <div class="col-6 offset-3">
+            <form th:action="@{'/adddoc'}" method="post">
+                <div class="form-group">
+                    <label class="form-label">
+                        Тип:
+                    </label>
+                    <select class="form-select" th:type="text" name="docName">
+                        <option>Заявление</option>
+                        <option>Справка</option>
+                        <option>Подать документы</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">
+                        ID студента:
+                    </label>
+                    <input th:type="text" class="form-control" name="studLogin">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-success mt-5">Отправить</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
