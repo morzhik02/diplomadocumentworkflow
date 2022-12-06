@@ -1,4 +1,6 @@
-<html xmlns:th="http://www.thymeleaf.org"
+<html xmlns:th="http://www.thymeleaf.org" xmlns:xlmns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      xlmns:layout="http://ultraq.net.nz/thymeleaf/layout"
       xmlns:sec = "http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
@@ -29,7 +31,7 @@
                         <!--/*@thymesVar id="currentUser" type="iitu.diploma.documentworkflow.entities.Users"*/-->
                         <a class="nav-link" href="http://localhost:8080/profile" th:text="${currentUser.firstName}"></a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" >
                         <a class="nav-link" href="http://localhost:8080/doclist" sec:authorize="hasAnyRole('ROLE_EMPLOYEE', 'ROLE_ADMIN')">List</a>
                     </li>
                     <li class="nav-item" sec:authorize="isAnonymous()">
@@ -61,36 +63,10 @@
         </div>
     </nav>
 </div>
-<div class="container">
-    <div class="row mt-5">
-        <div class="col-12">
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Тип</th>
-                    <th>Номер обращения</th>
-                    <th>ID студента</th>
-                    <th>Ответсвенный</th>
-                    <th>Статус</th>
-                    <th>Детали</th>
-                </tr>
-                </thead>
-                <tbody>
-                <!--/*@thymesVar id="docs" type="java.util.ArrayList<iitu.diploma.documentworkflow.entities.Documents>"*/-->
-                <tr th:each="doc : ${docs}">
-                    <td th:text="${doc.id}"></td>
-                    <td th:text="${doc.docType}"></td>
-                    <td th:text="${doc.num}"></td>
-                    <td th:text="${doc.studLogin}"></td>
-                    <td th:text="${doc.ownerId}"></td>
-                    <td th:text="${doc.status}"></td>
-                    <td><a th:href="@{'/details/' + ${doc.id}}" class="btn btn-info btn-sm" sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_EMPLOYEE')">Подробнее</a></td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+<div class="container" layout:fragment="site_content">
+    <h1> Hello,  <!--/*@thymesVar id="currentUser" type="iitu.diploma.documentworkflow.entities.Users"*/-->
+    <span th:text="${currentUser.firstName}"></span></h1>
+    <h1>Profile Page</h1>
 </div>
 </body>
 </html>

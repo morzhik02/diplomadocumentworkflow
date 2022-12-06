@@ -27,7 +27,7 @@ public class Documents {
     private Long num;
 
     //@ManyToOne(fetch = FetchType.EAGER)
-    //@Column(name = "stud_login")
+    //@Column   (name = "stud_login")
     //private Students student;
     @Column(name = "stud_login")
     private int studLogin;
